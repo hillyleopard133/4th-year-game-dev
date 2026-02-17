@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "name": "PlayerActions",
+    "maps": [
+        {
+            "name": "Dissolve",
+            "id": "7b1d4de2-a6d5-4b82-9a6a-e2a971774a80",
+            "actions": [
+                {
+                    "name": "Dissolve",
+                    "type": "Button",
+                    "id": "89f2e7e0-223c-497a-94db-e8291826b2b1",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Reappear",
+                    "type": "Button",
+                    "id": "198811d9-e340-48db-a796-6193391555cc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "55cf0065-5dce-42ed-84c0-d6ce3f437c54",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dissolve",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f73a3f1d-746b-4fd0-b1be-fda9136d7d46",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Reappear",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
