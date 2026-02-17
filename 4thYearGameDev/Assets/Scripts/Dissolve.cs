@@ -7,13 +7,67 @@ public class Dissolve : MonoBehaviour
     
     private PlayerActions playerActions;
     
-    void Update()
+
+    private float dissolveAmount = 0f;
+    private bool isDissolving = false;
+    private bool isReappearing = false;
+
+    private void Awake()
     {
-        float dissolveAmount = 0f;
-        while (dissolveAmount < 1f)
+        playerActions = new PlayerActions();
+
+        playerActions.Dissolve.Dissolve.performed += ctx => StartDissolve();
+        playerActions.Dissolve.Reappear.performed += ctx => StartReappear();
+    }
+
+    private void Update()
+    {
+        if (isDissolving)
         {
             dissolveAmount += Time.deltaTime / materializeTime;
-            dissolveMaterial.SetFloat("_DissolveAmount", dissolveAmount);
+            dissolveAmount = Mathf.Clamp01(dissolveAmount);
+
+            dissolveMaterial.SetFloat("_Dissolution_Amount", dissolveAmount);
+
+            if (dissolveAmount >= 1f)
+            {
+                isDissolving = false;
+            }
         }
+        
+        if (isReappearing)
+        {
+            dissolveAmount -= Time.deltaTime / materializeTime;
+            dissolveAmount = Mathf.Clamp01(dissolveAmount);
+
+            dissolveMaterial.SetFloat("_Dissolution_Amount", dissolveAmount);
+
+            if (dissolveAmount <= 0f)
+            {
+                isReappearing = false;
+            }
+        }
+    }
+    
+    private void StartDissolve()
+    {
+        isDissolving = true;
+        isReappearing = false;
+    }
+    
+    private void StartReappear()
+    {
+        isReappearing = true;
+        isDissolving = false;
+    }
+
+    private void OnEnable()
+    {
+        playerActions.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerActions.Disable();
     }
 }
