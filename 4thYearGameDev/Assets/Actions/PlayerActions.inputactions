@@ -49,6 +49,94 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "AStarTest",
+            "id": "fa80fb46-c8b1-4bf8-98c8-e1ab4dd0ab06",
+            "actions": [
+                {
+                    "name": "StartPosition",
+                    "type": "Button",
+                    "id": "4b7d8e4e-db2d-4f24-af02-47c6faef1fe4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EndPosition",
+                    "type": "Button",
+                    "id": "9a73c040-88f5-4fb6-b287-0c537d9d23b4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "DrawPath",
+                    "type": "Button",
+                    "id": "7a4bb38f-6d07-4245-93e6-8fd43503687c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AddObstacles",
+                    "type": "Button",
+                    "id": "003d4337-5202-46fc-b5b9-336c122f937f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "053cc943-b6cc-4009-89d9-71162db54cdd",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b05311b4-37ec-4fbb-b308-17c05cb9a630",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EndPosition",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "90d587b2-7674-4f6c-b82d-9e40d84ec5eb",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DrawPath",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fd12f432-5207-4b37-8270-c30a34afa282",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "AddObstacles",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

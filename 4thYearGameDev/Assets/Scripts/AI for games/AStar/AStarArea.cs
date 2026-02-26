@@ -10,10 +10,29 @@ public class AStarArea : MonoBehaviour
     public Tilemap collisionTilemap;
     public Tilemap frontTilemap;
     
+    public TileBase collisionTileToPlace;
+    public int numberOfTilesToPlace = 20;
+    public TileBase obstacleCollisionTile;
+    
     [HideInInspector] public int[,] aStarMovementPenalty;
 
     private void Start()
     {
+        AddObstaclesAndPreferredPaths();
+    }
+
+    public void PlaceRandomCollisionTiles()
+    {
+        for (int i = 0; i < numberOfTilesToPlace; i++)
+        {
+            int x = Random.Range(gridLowerBounds.x, gridUpperBounds.x + 1);
+            int y = Random.Range(gridLowerBounds.y, gridUpperBounds.y + 1);
+
+            Vector3Int pos = new Vector3Int(x, y, 0);
+
+            collisionTilemap.SetTile(pos, collisionTileToPlace);
+        }
+
         AddObstaclesAndPreferredPaths();
     }
     
