@@ -201,6 +201,9 @@ MonoBehaviour:
   grid: {fileID: 1831193459}
   collisionTilemap: {fileID: 1839395931}
   frontTilemap: {fileID: 1084333925}
+  collisionTileToPlace: {fileID: 0}
+  numberOfTilesToPlace: 20
+  obstacleCollisionTile: {fileID: 0}
 --- !u!1 &335291169
 GameObject:
   m_ObjectHideFlags: 0
@@ -11422,6 +11425,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 020d19a047ea9974680082b27ca8c548, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  player: {fileID: 0}
   enemyUnwalkableCollisionTilesArray:
   - {fileID: 11400000, guid: 37e2c9e0227bfbc409cd632b9bd0c81f, type: 2}
   - {fileID: 11400000, guid: 98f177f8276c38b429705e6720c48672, type: 2}
