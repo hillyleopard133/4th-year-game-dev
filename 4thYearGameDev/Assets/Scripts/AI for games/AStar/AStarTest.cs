@@ -18,7 +18,14 @@ public class AStarTest : MonoBehaviour
     
     private Vector3Int noValue = new Vector3Int(9999,9999,9999);
     private Stack<Vector3> pathStack;
+    
+    private PlayerActions playerActions;
 
+    private void Awake()
+    {
+        playerActions = new PlayerActions();
+    }
+    
     private void Start()
     {
         startPathTile = GameManager.Instance.preferredEnemyPathTile;
@@ -31,29 +38,21 @@ public class AStarTest : MonoBehaviour
         endGridPosition = noValue;
 
         SetUpPathTilemap();
-    }
-
-    private void Update()
-    {
-        if(area == null || startPathTile == null || finishPathTile == null || grid == null || pathTilemap == null) return;
-
         
-        if (Input.GetKeyDown(KeyCode.I))
+        playerActions.AStarTest.StartPosition.performed += ctx =>
         {
             ClearPath();
             SetStartPosition();
-        }
-        if (Input.GetKeyDown(KeyCode.O))
+        };
+        playerActions.AStarTest.EndPosition.performed += ctx =>
         {
             ClearPath();
             SetEndPosition();
-        }
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            DisplayPath();
-        }
+        };
+        playerActions.AStarTest.DrawPath.performed += ctx => DisplayPath();
+        playerActions.AStarTest.AddObstacles.performed += ctx => area.AddObstaclesAndPreferredPaths();
     }
-
+    
     private void DisplayPath()
     {
         if(startGridPosition == noValue || endGridPosition == noValue) return;
@@ -151,4 +150,13 @@ public class AStarTest : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        playerActions.AStarTest.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerActions.AStarTest.Disable();
+    }
 }
