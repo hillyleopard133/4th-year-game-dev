@@ -13,8 +13,8 @@ TagManager:
   - Water
   - UI
   - Hero
-  - 
-  - 
+  - Player
+  - CollisionTiles
   - 
   - 
   - 
@@ -41,6 +41,15 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 3448637695
+    locked: 0
+  - name: Collision
+    uniqueID: 2721011461
+    locked: 0
+  - name: Player
+    uniqueID: 693704855
     locked: 0
   m_RenderingLayers:
   - Default

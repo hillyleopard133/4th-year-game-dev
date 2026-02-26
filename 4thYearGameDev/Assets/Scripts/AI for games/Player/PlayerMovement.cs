@@ -6,11 +6,8 @@ public class PlayerMovement : MonoBehaviour
     [FormerlySerializedAs("speed")]
     [Header("Config")]
     [SerializeField] private float walkSpeed;
-    [SerializeField] private float sprintSpeed;
     
     public float WalkSpeed  => walkSpeed;
-    public float SprintSpeed => sprintSpeed;
-
     public Vector2 MoveDirection => moveDirection;
 
     private PlayerAnimations playerAnimations;
