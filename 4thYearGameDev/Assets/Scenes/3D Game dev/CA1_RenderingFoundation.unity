@@ -245,8 +245,9 @@ GameObject:
   - component: {fileID: 92883886}
   - component: {fileID: 92883885}
   - component: {fileID: 92883884}
+  - component: {fileID: 92883888}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: DissolvingCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -298,7 +299,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: bbd1beecdb5449b46a294ddd9c40e400, type: 3}
+  - {fileID: -876546973899608171, guid: a886a6af17295184dadfdd3e8fd1d387, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -345,6 +346,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &92883888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 92883883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c852ae012b9e6cf4092d3c3813bad693, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Dissolve
+  materializeTime: 2
+  dissolveMaterial: {fileID: -876546973899608171, guid: a886a6af17295184dadfdd3e8fd1d387,
+    type: 3}
 --- !u!1 &315182061
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,7 +501,7 @@ GameObject:
   - component: {fileID: 603724525}
   - component: {fileID: 603724524}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: LightCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
