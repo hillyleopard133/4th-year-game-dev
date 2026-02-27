@@ -22,7 +22,7 @@ public class PlayerAttack : MonoBehaviour
     private Transform currentAttackPosition;
     private float currentAttackRotation;
 
-    private float attackDamage;
+    [SerializeField] private float attackDamage;
 
     private void Awake()
     {

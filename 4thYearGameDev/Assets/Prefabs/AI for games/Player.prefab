@@ -279,7 +279,8 @@ MonoBehaviour:
   minDistanceMeleeAttack: 2
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
+  attackDamage: 25
 --- !u!114 &4612472204103580027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c7643cbda0235b4f83b8fb70fb2ef02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 200
 --- !u!1 &4612472204518894724
 GameObject:
   m_ObjectHideFlags: 0

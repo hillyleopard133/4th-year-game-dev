@@ -16,7 +16,7 @@ public class EnemyBrain : MonoBehaviour
         [HideInInspector] public int updateFrameNumber = 1;
         [HideInInspector] public bool isAlive = true;
         
-        public FSMState CurrentState {get; set;}
+        public FSMState CurrentState {get; private set;}
         
         public Transform Player {get; set;}
 

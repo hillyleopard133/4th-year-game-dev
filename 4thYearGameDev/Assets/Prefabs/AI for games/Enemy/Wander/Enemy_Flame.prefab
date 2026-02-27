@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 3493757899100929585}
   - component: {fileID: 3493757899100929586}
   - component: {fileID: -5984238967752415496}
+  - component: {fileID: -3922512384402343253}
   m_Layer: 9
   m_Name: Enemy_Flame
   m_TagString: Enemy
@@ -348,7 +349,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c223e9dced7de04fb0a704a9da11112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 8
+  range: 6
   playerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -407,3 +408,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfab97295948cc04f862f9c075a9ddac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimations
+--- !u!114 &-3922512384402343253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3493757899100929615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b67c89721e140944b665908e1a95cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
+  health: 100
