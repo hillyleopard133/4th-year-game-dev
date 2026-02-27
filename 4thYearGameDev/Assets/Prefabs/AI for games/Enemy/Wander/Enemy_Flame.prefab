@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 3493757899100929585}
   - component: {fileID: 3493757899100929586}
   - component: {fileID: -5984238967752415496}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Enemy_Flame
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -179,8 +179,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 2023768221
-  m_SortingLayer: 0
+  m_SortingLayerID: 693704855
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -1958793622, guid: 45facd7a436279c4a82ca8854f3c920b, type: 3}

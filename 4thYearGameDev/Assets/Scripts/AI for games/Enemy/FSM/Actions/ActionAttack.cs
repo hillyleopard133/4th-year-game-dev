@@ -32,8 +32,8 @@ public class ActionAttack : FSMAction
         if (timer <= 0f)
         {
             enemyBrain.animations.SetMoveBoolTransition(false);
-            //IDamageable player = enemyBrain.Player.GetComponent<IDamageable>();
-            //player.TakeDamage(damage);
+            PlayerHealth playerHealth = enemyBrain.Player.GetComponent<PlayerHealth>();
+            playerHealth.TakeDamage(damage);
             timer = timeBtwAttacks;
         }
     }

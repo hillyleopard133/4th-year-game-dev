@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 6187653847439997490}
   - component: {fileID: -4371684664218380356}
   - component: {fileID: -5234264089254961053}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Enemy_Cyclops
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -89,8 +89,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 2023768221
-  m_SortingLayer: 0
+  m_SortingLayerID: 693704855
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 194506793, guid: 328ef4792cb4f614dbc9f1b984ffe53e, type: 3}

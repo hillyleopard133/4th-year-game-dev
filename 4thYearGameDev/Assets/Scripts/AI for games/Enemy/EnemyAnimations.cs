@@ -6,12 +6,18 @@ public class EnemyAnimations : MonoBehaviour
     private readonly int moveY = Animator.StringToHash("MoveY");
     private readonly int moving = Animator.StringToHash("Moving");
     private readonly int attacking = Animator.StringToHash("Attacking");
+    private readonly int dead = Animator.StringToHash("Dead");
 
     private Animator animator;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+    }
+
+    public void SetDeadAnimation()
+    {
+        animator.SetTrigger(dead);
     }
     
     public void SetMoveBoolTransition(bool value)
