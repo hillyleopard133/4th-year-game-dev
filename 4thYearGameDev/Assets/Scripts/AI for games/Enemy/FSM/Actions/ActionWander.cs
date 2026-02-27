@@ -9,8 +9,8 @@ public class ActionWander : FSMAction
     [SerializeField] private float wanderTime;
     [SerializeField] private Vector2 moveRange;
     
-    private Stack<Vector3> movementSteps;
-    public Coroutine moveEnemyRoutine;
+    [HideInInspector] public Stack<Vector3> movementSteps;
+    private Coroutine moveEnemyRoutine;
     private WaitForFixedUpdate waitForFixedUpdate;
 
     private int updateFrameNumber;

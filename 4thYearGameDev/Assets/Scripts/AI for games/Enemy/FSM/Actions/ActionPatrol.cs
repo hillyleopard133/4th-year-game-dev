@@ -12,7 +12,7 @@ public class ActionPatrol : FSMAction
     private Vector3Int gridDestination;
     
     [HideInInspector] public Stack<Vector3> movementSteps;
-    public Coroutine moveEnemyRoutine;
+    private Coroutine moveEnemyRoutine;
     private WaitForFixedUpdate waitForFixedUpdate;
 
     private int updateFrameNumber;

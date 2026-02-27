@@ -9,13 +9,17 @@ public class PlayerHealth : MonoBehaviour
     private PlayerAnimations playerAnimations;
 
     private float health;
-    private int maxHealth;
+    [SerializeField] private int maxHealth;
 
     private void Awake()
     {
         playerAnimations = GetComponent<PlayerAnimations>();
     }
 
+    private void Start()
+    {
+        ResetHealth();
+    }
     
     public void TakeDamage(float amount)
     {
