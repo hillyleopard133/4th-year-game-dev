@@ -12,7 +12,7 @@ public class ActionChase : FSMAction
     
     private Stack<Vector3> movementSteps = new Stack<Vector3>();
     private Vector3 playerReferencePosition;
-    public Coroutine moveEnemyRoutine;
+    private Coroutine moveEnemyRoutine;
     private float currentEnemyPathRebuildCooldown;
     private WaitForFixedUpdate waitForFixedUpdate;
     private List<Vector2Int> surroundingPositionList = new List<Vector2Int>();
