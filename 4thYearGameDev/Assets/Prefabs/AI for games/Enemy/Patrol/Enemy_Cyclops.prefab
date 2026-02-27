@@ -19,6 +19,8 @@ GameObject:
   - component: {fileID: 6187653847439997516}
   - component: {fileID: 6187653847439997491}
   - component: {fileID: 6187653847439997490}
+  - component: {fileID: -4371684664218380356}
+  - component: {fileID: -5234264089254961053}
   m_Layer: 6
   m_Name: Enemy_Cyclops
   m_TagString: Enemy
@@ -226,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c223e9dced7de04fb0a704a9da11112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 6
+  range: 8
   playerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -255,7 +257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615dc8cdfa5ba0e479b889a8b9dd1fd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 2
+  attackRange: 1
   playerMask:
     serializedVersion: 2
     m_Bits: 128
@@ -273,6 +275,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   timeBtwAttacks: 1
+--- !u!114 &-4371684664218380356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6187653847439997511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e77a63b71c9edf48b91c88e12f2204c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBrain
+  movementType: 1
+  initialState: Patrol
+  states:
+  - ID: Patrol
+    Actions:
+    - {fileID: 6187653847439997519}
+    Transitions:
+    - Decision: {fileID: 6187653847439997517}
+      TrueState: Chase
+      FalseState: 
+  - ID: Chase
+    Actions:
+    - {fileID: 6187653847439997516}
+    Transitions:
+    - Decision: {fileID: 6187653847439997517}
+      TrueState: 
+      FalseState: Patrol
+    - Decision: {fileID: 6187653847439997491}
+      TrueState: Attack
+      FalseState: 
+  - ID: Attack
+    Actions:
+    - {fileID: 6187653847439997490}
+    Transitions:
+    - Decision: {fileID: 6187653847439997491}
+      TrueState: 
+      FalseState: Chase
+  rb: {fileID: 0}
+  animations: {fileID: 0}
+  updateFrameNumber: 1
+  isAlive: 1
+--- !u!114 &-5234264089254961053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6187653847439997511}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfab97295948cc04f862f9c075a9ddac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimations
 --- !u!1 &7356993959733057940
 GameObject:
   m_ObjectHideFlags: 0
