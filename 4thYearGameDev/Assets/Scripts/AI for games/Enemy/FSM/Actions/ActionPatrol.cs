@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.TextCore.Text;
 using UnityEngine;
 
 public class ActionPatrol : FSMAction
@@ -16,7 +17,6 @@ public class ActionPatrol : FSMAction
     private WaitForFixedUpdate waitForFixedUpdate;
 
     private int updateFrameNumber;
-    private Vector3 movePosition;
     
     private EnemyBrain enemyBrain;
     private AStarArea area;
@@ -53,31 +53,32 @@ public class ActionPatrol : FSMAction
     {
         if (Time.frameCount % Settings.targetFrameRateToSpreadPathFindingOver != updateFrameNumber) return;
 
-        if (Vector3.Distance(transform.position, gridDestination) <= 1f || movementSteps == null)
+        
+        if (movementSteps != null)
         {
-            UpdateNextPosition();
-            CreatePath();
+            Debug.Log("movement steps: " +  movementSteps.Count);
+        }
+        if (movementSteps == null || movementSteps.Count == 0)
+        {
+            UpdateNextPosition();  
+            CreatePath();          
 
-            if (movementSteps != null)
-            {
-                if (moveEnemyRoutine != null)
-                {
-                    StopCoroutine(moveEnemyRoutine);
-                }
+            if (moveEnemyRoutine != null) StopCoroutine(moveEnemyRoutine);
 
-                moveEnemyRoutine = StartCoroutine(MoveEnemyRoutine(movementSteps));
-            }
+            moveEnemyRoutine = StartCoroutine(MoveEnemyRoutine(movementSteps));
         }
     }
     
     private IEnumerator MoveEnemyRoutine(Stack<Vector3> movementSteps)
     {
+        Debug.Log("Starting move routine");
         enemyBrain.animations.SetMoveBoolTransition(true);  
         while (movementSteps.Count > 0)
         {
+            Debug.Log("movement steps in routine: " +  movementSteps.Count);
             Vector3 nextPosition = movementSteps.Pop();
 
-            while (Vector3.Distance(nextPosition, transform.position) > 0.05f)
+            while (Vector3.Distance(nextPosition, transform.position) > 0.2f)
             {
                 MoveRigidBody(nextPosition, speed);
                 
@@ -110,6 +111,7 @@ public class ActionPatrol : FSMAction
 
     private void UpdateNextPosition()
     {
+        Debug.Log("current point: " + pointIndex);
         pointIndex++;
         if (pointIndex > waypoint.Points.Length - 1)
         {
