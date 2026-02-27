@@ -7,10 +7,6 @@ public enum EnemyMovementType
 }
 public class EnemyBrain : MonoBehaviour
 {
-        [Header("Config")]
-        [SerializeField] public Sprite Icon;
-        [SerializeField] public string Name;
-
         public EnemyMovementType movementType;
         [SerializeField] private string initialState;      //Patrol or wander
         [SerializeField] private FSMState[] states;
