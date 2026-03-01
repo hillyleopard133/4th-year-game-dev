@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/AI for games/FSM.unity
+    guid: 12eccb261bdecca4aa97b642fd866d6a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 0f933066093c16542aee13480955c091,
       type: 3}
