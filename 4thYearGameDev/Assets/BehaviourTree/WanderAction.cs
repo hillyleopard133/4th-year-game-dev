@@ -16,11 +16,14 @@ public partial class WanderAction : Action
     protected override Status OnStart()
     {
         agent = GameObject.GetComponent<BehaviorGraphAgent>();
-        wander = agent.GetComponent<ActionWander>();
-        brain = agent.GetComponent<EnemyBrain>();
+        wander = GameObject.GetComponent<ActionWander>();
+        brain = GameObject.GetComponent<EnemyBrain>();
+        
         blackboard = agent.BlackboardReference;
         blackboard.SetVariableValue("Self", agent.gameObject);
         blackboard.SetVariableValue("Target", agent.gameObject);
+
+        brain.CurrentAction = "Wander";
         wander.Act();
         return Status.Running;
     }

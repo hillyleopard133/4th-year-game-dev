@@ -19,6 +19,8 @@ public class ActionWander : FSMAction
     
     private EnemyBrain enemyBrain;
     private AStarArea area;
+    
+    private bool wandering;
 
     private void Awake()
     {
@@ -30,15 +32,22 @@ public class ActionWander : FSMAction
         area = FindObjectOfType<AStarArea>();
         updateFrameNumber = enemyBrain.updateFrameNumber;
     }
-    
-    public override void Act()
+
+    private void Update()
     {
+        if(!wandering) return;
         if(!enemyBrain.isAlive) return;
         MoveEnemy();
     }
     
+    public override void Act()
+    {
+        wandering = true;
+    }
+    
     public void StopMoving()
     {
+        wandering = false;
         movementSteps = null;
         if (moveEnemyRoutine != null)
         {

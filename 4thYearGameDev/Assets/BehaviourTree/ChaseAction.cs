@@ -8,10 +8,14 @@ using Action = Unity.Behavior.Action;
 public partial class ChaseAction : Action
 {
     private ActionChase chase;
+    private EnemyBrain brain;
 
     protected override Status OnStart()
     {
         chase = GameObject.GetComponent<ActionChase>();
+        brain = GameObject.GetComponent<EnemyBrain>();
+
+        brain.CurrentAction = "Chase";
         chase.Act(); 
         return Status.Running;
     }
