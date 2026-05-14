@@ -11,31 +11,38 @@ public class ActionAttack : FSMAction
     private EnemyBrain enemyBrain;
     private float timer;
 
+    public bool IsFinished;
+    private bool attacking;
+
     private void Awake()
     {
         enemyBrain = GetComponent<EnemyBrain>();
     }
-    
-    public override void Act()
-    {
-        AttackPlayer();
-    }
 
-    private void AttackPlayer()
+    private void Update()
     {
-        if (enemyBrain.Player == null)
-        {
-            return;
-        }
-        
-        timer -= Time.deltaTime;
+        if(!attacking) return;
+        timer += Time.deltaTime;
         if (timer <= 0f)
         {
+            attacking = false;
+            IsFinished = true;
             enemyBrain.animations.SetMoveBoolTransition(false);
             PlayerHealth playerHealth = enemyBrain.Player.GetComponent<PlayerHealth>();
             playerHealth.TakeDamage(damage);
-            timer = timeBtwAttacks;
         }
     }
     
+    public override void Act()
+    {
+        timer = timeBtwAttacks;
+        IsFinished = false;
+        attacking = true;
+    }
+
+    public void StopAttack()
+    {
+        attacking = false;
+        IsFinished = true;
+    }
 }

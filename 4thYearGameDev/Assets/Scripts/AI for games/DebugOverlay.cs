@@ -10,7 +10,7 @@ public class DebugOverlay : MonoBehaviour
     
     private void Update()
     {
-        string fsmState = enemy.CurrentState != null ? enemy.CurrentState.ID : "None";
+        string fsmState = enemy.CurrentAction;
         string targetName = enemy.Player != null ? enemy.Player.name : "None";
 
         string targetPos = "";

@@ -20,6 +20,8 @@ public class ActionChase : FSMAction
     private EnemyBrain enemyBrain;
     private AStarArea area;
 
+    private bool chasing;
+
     private void Awake()
     {
         enemyBrain = GetComponent<EnemyBrain>();
@@ -30,15 +32,22 @@ public class ActionChase : FSMAction
         area = FindObjectOfType<AStarArea>();
         updateFrameNumber = enemyBrain.updateFrameNumber;
     }
-    
-    public override void Act()
+
+    private void Update()
     {
+        if(!chasing) return;
         if (!enemyBrain.isAlive) return;
         ChasePlayer();
     }
     
+    public override void Act()
+    {
+        chasing = true;
+    }
+    
     public void StopMoving()
     {
+        chasing = false;
         movementSteps = null;
         if (moveEnemyRoutine != null)
         {
