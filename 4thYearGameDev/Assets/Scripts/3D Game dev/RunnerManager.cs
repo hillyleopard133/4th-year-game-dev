@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Fusion;
 using Fusion.Sockets;
 using UnityEngine;
@@ -8,13 +9,15 @@ public class RunnerManager : MonoBehaviour, INetworkRunnerCallbacks
 {
     public NetworkRunner runner;          
     public NetworkPrefabRef playerPrefab; 
+    
+    private Dictionary<PlayerRef, NetworkObject> spawnedPlayers = new Dictionary<PlayerRef, NetworkObject>();
 
     private void Awake()
     {
-        if (runner == null)
-            runner = GetComponent<NetworkRunner>();
+        if (runner == null) runner = GetComponent<NetworkRunner>();
     }
 
+    /*
     private async void Start()
     {
         await StartGame();
@@ -22,26 +25,54 @@ public class RunnerManager : MonoBehaviour, INetworkRunnerCallbacks
 
     private async System.Threading.Tasks.Task StartGame()
     {
+        if (runner == null)
+        {
+            Debug.LogError("Runner reference missing!");
+            return;
+        }
+
+        if (runner.IsRunning)
+        {
+            Debug.LogWarning("Runner already running.");
+            return;
+        }
+        
         runner.AddCallbacks(this);
 
         await runner.StartGame(new StartGameArgs()
         {
             GameMode = GameMode.Shared,
-            SessionName = "CA2Session",
+            SessionName = "CA3Session",
             Scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex),
             SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
         });
     }
+    */
 
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
-        if (runner.IsServer)
+        if (player == runner.LocalPlayer)
         {
-            runner.Spawn(playerPrefab, new Vector3(0, 1, 0), Quaternion.identity, player);
+            NetworkObject playerObject = runner.Spawn(
+                playerPrefab,
+                new Vector3(UnityEngine.Random.Range(-5, 5), 1, 0),
+                Quaternion.identity,
+                player
+            );
+
+            spawnedPlayers.Add(player, playerObject);
         }
     }
     
-    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player) { }
+    public void OnPlayerLeft(NetworkRunner runner, PlayerRef player)
+    {
+        if (spawnedPlayers.TryGetValue(player, out NetworkObject playerObject))
+        {
+            runner.Despawn(playerObject);
+            spawnedPlayers.Remove(player);
+        }
+    }
+    
     public void OnReliableDataProgress(NetworkRunner runner, PlayerRef player, ReliableKey key, float progress) { }
     public void OnObjectExitAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
     public void OnObjectEnterAOI(NetworkRunner runner, NetworkObject obj, PlayerRef player) { }
