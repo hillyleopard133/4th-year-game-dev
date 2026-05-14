@@ -1,3 +1,4 @@
+using Unity.Behavior;
 using UnityEngine;
 
 public enum EnemyMovementType
@@ -19,23 +20,35 @@ public class EnemyBrain : MonoBehaviour
         public FSMState CurrentState {get; private set;}
         
         public Transform Player {get; set;}
+        
+        private BehaviorGraphAgent agent;
 
         private void Awake()
         {
                 rb = GetComponent<Rigidbody2D>();
                 animations = GetComponent<EnemyAnimations>();
+                agent = GetComponent<BehaviorGraphAgent>();
         }
 
         private void Start()
         {
-                ChangeState(initialState);
+                //ChangeState(initialState);
         }
 
         private void Update()
         {
-                CurrentState?.UpdateState(this);
+                //CurrentState?.UpdateState(this);
+                SetPlayerDistance();
         }
 
+        private void SetPlayerDistance()
+        {
+                float distance = Vector3.Distance(transform.position, Player.position);
+                BlackboardReference blackboard = agent.BlackboardReference;
+                blackboard.SetVariableValue("Distance", distance);
+        }
+
+        /*
         public void ChangeState(string newStateID)
         {
                 FSMState newState = GetState(newStateID);
@@ -57,5 +70,6 @@ public class EnemyBrain : MonoBehaviour
                 }
                 return null;
         }
+        */
         
 }

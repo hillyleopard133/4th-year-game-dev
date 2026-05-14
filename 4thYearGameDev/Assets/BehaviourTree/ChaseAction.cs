@@ -2,25 +2,28 @@ using System;
 using Unity.Behavior;
 using UnityEngine;
 using Action = Unity.Behavior.Action;
-using Unity.Properties;
 
-[Serializable, GeneratePropertyBag]
+[Serializable]
 [NodeDescription(name: "Chase", story: "Chase player", category: "Action", id: "eb27d86379bbd98a047bacab96a9498d")]
 public partial class ChaseAction : Action
 {
+    private ActionChase chase;
 
     protected override Status OnStart()
     {
+        chase = GameObject.GetComponent<ActionChase>();
+        chase.Act(); 
         return Status.Running;
     }
 
     protected override Status OnUpdate()
     {
-        return Status.Success;
+        return Status.Running;
     }
 
     protected override void OnEnd()
     {
+        if (chase != null)
+            chase.StopMoving();
     }
 }
-
