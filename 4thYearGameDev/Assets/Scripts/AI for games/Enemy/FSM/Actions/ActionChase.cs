@@ -97,7 +97,7 @@ public class ActionChase : FSMAction
             Vector2 direction = (nextPosition - transform.position).normalized;
             enemyBrain.animations.SetMoveAnimation(direction);
 
-            while (Vector3.Distance(nextPosition, transform.position) > 1f)
+            while (Vector3.Distance(nextPosition, transform.position) > 0.5f)
             {
                 if (!enemyBrain.isAlive) yield break;
                 MoveRigidBody(nextPosition, chaseSpeed);
