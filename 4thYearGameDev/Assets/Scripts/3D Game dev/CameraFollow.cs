@@ -1,25 +1,35 @@
-using Fusion;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
     public Transform target;
-    public Vector3 offset = new Vector3(0, 5, -8);
-    public float smoothSpeed = 5f;
-    
+
+    public float distance = 6f;
+    public float sensitivity = 3f;
+    public float minY = -30f;
+    public float maxY = 60f;
+
+    private float yaw;
+    private float pitch = 20f;
+
     private void LateUpdate()
     {
         if (target == null)
             return;
 
-        Vector3 desiredPosition = target.position + offset;
+        // Mouse input
+        yaw += Input.GetAxis("Mouse X") * sensitivity;
+        pitch -= Input.GetAxis("Mouse Y") * sensitivity;
 
-        transform.position = Vector3.Lerp(
-            transform.position,
-            desiredPosition,
-            smoothSpeed * Time.deltaTime
-        );
+        pitch = Mathf.Clamp(pitch, minY, maxY);
 
-        transform.LookAt(target);
+        // Calculate rotation
+        Quaternion rotation = Quaternion.Euler(pitch, yaw, 0);
+
+        // Calculate position behind player
+        Vector3 direction = rotation * new Vector3(0, 0, -distance);
+
+        transform.position = target.position + direction;
+        transform.LookAt(target.position + Vector3.up * 1.5f);
     }
 }
