@@ -9,11 +9,19 @@ public partial class AttackAction : Action
 {
     private ActionAttack attack;
     private EnemyBrain brain;
+    private BehaviorGraphAgent agent;
+    private BlackboardReference blackboard;
+
+    private float attackRange;
 
     protected override Status OnStart()
     {
         attack = GameObject.GetComponent<ActionAttack>();
         brain = GameObject.GetComponent<EnemyBrain>();
+        agent = GameObject.GetComponent<BehaviorGraphAgent>();
+        
+        blackboard = agent.BlackboardReference;
+        blackboard.GetVariableValue("AttackRange", out attackRange);
 
         brain.CurrentAction = "Attack";
         attack.Act();
@@ -22,6 +30,14 @@ public partial class AttackAction : Action
 
     protected override Status OnUpdate()
     {
+        float distance;
+        blackboard.GetVariableValue("Distance", out distance);
+
+        if (distance > attackRange)
+        {
+            return Status.Failure;
+        }
+        
         if (attack != null && attack.IsFinished)
             return Status.Success;
 

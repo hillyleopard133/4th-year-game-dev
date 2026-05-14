@@ -13,6 +13,8 @@ public partial class WanderAction : Action
     private BlackboardReference blackboard;
     private EnemyBrain brain;
 
+    private float detectionRange;
+
     protected override Status OnStart()
     {
         agent = GameObject.GetComponent<BehaviorGraphAgent>();
@@ -20,8 +22,7 @@ public partial class WanderAction : Action
         brain = GameObject.GetComponent<EnemyBrain>();
         
         blackboard = agent.BlackboardReference;
-        blackboard.SetVariableValue("Self", agent.gameObject);
-        blackboard.SetVariableValue("Target", agent.gameObject);
+        blackboard.GetVariableValue("DetectionRange", out detectionRange);
 
         brain.CurrentAction = "Wander";
         wander.Act();
@@ -30,12 +31,19 @@ public partial class WanderAction : Action
 
     protected override Status OnUpdate()
     {
+        float distance;
+        blackboard.GetVariableValue("Distance", out distance);
+
+        if (distance < detectionRange)
+        {
+            return Status.Failure;
+        }
+
         return Status.Running; 
     }
 
     protected override void OnEnd()
     {
-        blackboard.SetVariableValue("Target", brain.Player.gameObject);
         wander.StopMoving();
     }
 }

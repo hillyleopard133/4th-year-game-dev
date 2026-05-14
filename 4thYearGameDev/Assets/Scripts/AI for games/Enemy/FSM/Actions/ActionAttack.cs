@@ -22,7 +22,7 @@ public class ActionAttack : FSMAction
     private void Update()
     {
         if(!attacking) return;
-        timer += Time.deltaTime;
+        timer -= Time.deltaTime;
         if (timer <= 0f)
         {
             attacking = false;
