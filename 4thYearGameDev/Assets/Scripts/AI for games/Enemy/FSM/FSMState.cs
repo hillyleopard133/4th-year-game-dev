@@ -7,6 +7,7 @@ public class FSMState
     public FSMAction[] Actions; 
     public FSMTransition[] Transitions;
 
+    /*
     public void UpdateState(EnemyBrain enemyBrain)
     {
         ExecuteActions();
@@ -41,5 +42,6 @@ public class FSMState
             Actions[i].Act();
         }    
     }
+    */
     
 }
