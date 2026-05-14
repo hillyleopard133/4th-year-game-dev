@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.Behavior;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -7,6 +8,16 @@ public class DebugOverlay : MonoBehaviour
 {
     public TextMeshProUGUI debugText;
     public EnemyBrain enemy; 
+    private BehaviorGraphAgent agent;
+    private BlackboardReference blackboard;
+    
+    float distance;
+
+    private void Start()
+    {
+        agent = enemy.GetComponent<BehaviorGraphAgent>();
+        blackboard = agent.BlackboardReference;
+    }
     
     private void Update()
     {
@@ -38,8 +49,10 @@ public class DebugOverlay : MonoBehaviour
             targetPos = movementGoal.HasValue ? movementGoal.Value.ToString("F1") : "None";
         }
         
+        blackboard.GetVariableValue("Distance", out distance);
+        
         debugText.text = enemy.name + "\nFSM State: " + fsmState + "\nCurrent Target: " + targetName + "\nTarget Pos: " + 
-                         targetPos + "\nAlive: " + enemy.isAlive;
+                         targetPos + "\nTarget Distance: " + distance + "\nAlive: " + enemy.isAlive;
     }
 
 }
