@@ -17,40 +17,11 @@ public class RunnerManager : MonoBehaviour, INetworkRunnerCallbacks
         if (runner == null) runner = GetComponent<NetworkRunner>();
     }
 
-    /*
-    private async void Start()
-    {
-        await StartGame();
-    }
-
-    private async System.Threading.Tasks.Task StartGame()
-    {
-        if (runner == null)
-        {
-            Debug.LogError("Runner reference missing!");
-            return;
-        }
-
-        if (runner.IsRunning)
-        {
-            Debug.LogWarning("Runner already running.");
-            return;
-        }
-        
-        runner.AddCallbacks(this);
-
-        await runner.StartGame(new StartGameArgs()
-        {
-            GameMode = GameMode.Shared,
-            SessionName = "CA3Session",
-            Scene = SceneRef.FromIndex(SceneManager.GetActiveScene().buildIndex),
-            SceneManager = gameObject.AddComponent<NetworkSceneManagerDefault>()
-        });
-    }
-    */
-
     public void OnPlayerJoined(NetworkRunner runner, PlayerRef player)
     {
+        if (spawnedPlayers.ContainsKey(player))
+            return;
+        
         if (player == runner.LocalPlayer)
         {
             NetworkObject playerObject = runner.Spawn(
