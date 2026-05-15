@@ -1,10 +1,11 @@
 Unity version: 6000.3.8f1
 
+I kinda broke my github and it ended up making 2 of most of my commits when I was merging my CA3 branch..
+
 #### Video and screenshots are in the document
 
 ### Packages used
 Sprites asset pack I got during my flexible semester.
-
 
 ### How to run
 Unzip the build zip and run the "4thYearGameDev" executable file.
